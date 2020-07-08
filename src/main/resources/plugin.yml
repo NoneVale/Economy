@@ -1,0 +1,27 @@
+name: Economy
+version: ${version}
+main: net.nighthawkempires.economy.EconomyPlugin
+description: Nighthawk Empires' Economy Plugin.
+author: NoneVale_
+api-version: 1.15
+depend: [Core]
+softdepend: [Regions]
+commands:
+  balance:
+    aliases: [bal]
+    usage: </command>
+    description: Balance command for Nighthawk Empires' Economy Plugin.
+  balancetop:
+    aliases: [baltop]
+    usage: </command>
+    description: Balance Top command for Nighthawk Empires' Economy Plugin.
+  economy:
+    aliases: [econ]
+    usage: </command>
+    description: Economy command for Nighthawk Empires' Economy Plugin.
+  pay:
+    usage: </command>
+    description: Pay command for Nighthawk Empires' Economy Plugin.
+  shop:
+    usage: </command>
+    description: Shop command for Nighthawk Empires' Economy Plugin.
