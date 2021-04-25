@@ -35,7 +35,7 @@ public class EconomyCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (!player.hasPermission("ne.give")) {
+            if (!player.hasPermission("ne.economy") && !player.hasPermission("ne.admin")) {
                 player.sendMessage(getMessages().getChatTag(NO_PERMS));
                 return true;
             }

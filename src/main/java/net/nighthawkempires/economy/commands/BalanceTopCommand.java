@@ -17,20 +17,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-import static net.nighthawkempires.core.CorePlugin.getMessages;
-import static net.nighthawkempires.core.CorePlugin.getUserRegistry;
+import static net.nighthawkempires.core.CorePlugin.*;
 import static net.nighthawkempires.core.lang.Messages.CHAT_FOOTER;
 import static net.nighthawkempires.core.lang.Messages.CHAT_HEADER;
 import static org.bukkit.ChatColor.*;
 import static org.bukkit.ChatColor.DARK_GRAY;
 
 public class BalanceTopCommand implements CommandExecutor {
+
+    public BalanceTopCommand() {
+        getCommandManager().registerCommands("balancetop", new String[]{
+                "ne.balance"
+        });
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (!player.hasPermission("ne.souls")) {
+            if (!player.hasPermission("ne.balance")) {
                 player.sendMessage(CorePlugin.getMessages().getChatTag(Messages.NO_PERMS));
                 return true;
             }
@@ -62,7 +68,7 @@ public class BalanceTopCommand implements CommandExecutor {
         return false;
     }
 
-    private int getTotalBalanceTopPages() {
+    public static int getTotalBalanceTopPages() {
         return (int) Math.ceil((double) getUserRegistry().getUsers().size() / 10);
     }
 

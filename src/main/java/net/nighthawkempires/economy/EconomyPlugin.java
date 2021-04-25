@@ -9,7 +9,7 @@ import net.nighthawkempires.economy.category.registry.FCategoryRegistry;
 import net.nighthawkempires.economy.commands.*;
 import net.nighthawkempires.economy.data.InventoryData;
 import net.nighthawkempires.economy.listeners.InventoryListener;
-import net.nighthawkempires.economy.tabcompleters.ShopTabCompleter;
+import net.nighthawkempires.economy.tabcompleters.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -58,6 +58,10 @@ public class EconomyPlugin extends JavaPlugin {
     }
 
     public void registerTabCompleters() {
+        this.getCommand("balance").setTabCompleter(new BalanceTabCompleter());
+        this.getCommand("balancetop").setTabCompleter(new BalanceTopTabCompleter());
+        this.getCommand("economy").setTabCompleter(new EconomyTabCompleter());
+        this.getCommand("pay").setTabCompleter(new PayTabCompleter());
         this.getCommand("shop").setTabCompleter(new ShopTabCompleter());
     }
 

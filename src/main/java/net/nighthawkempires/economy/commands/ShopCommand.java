@@ -34,7 +34,7 @@ public class ShopCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (!player.hasPermission("ne.shop") && !player.hasPermission("ne.shop.admin")) {
+            if (!player.hasPermission("ne.shop") && !player.hasPermission("ne.admin")) {
                 player.sendMessage(getMessages().getChatTag(NO_PERMS));
                 return true;
             }

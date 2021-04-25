@@ -1,6 +1,8 @@
 package net.nighthawkempires.economy.tabcompleters;
 
 import com.google.common.collect.Lists;
+import net.nighthawkempires.economy.commands.BalanceTopCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -10,22 +12,29 @@ import org.bukkit.util.StringUtil;
 import java.util.Collections;
 import java.util.List;
 
-import static net.nighthawkempires.economy.EconomyPlugin.getCategoryRegistry;
-
-public class ShopTabCompleter implements TabCompleter {
+public class EconomyTabCompleter implements TabCompleter {
 
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         List<String> completions = Lists.newArrayList();
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (!player.hasPermission("ne.shop") && !player.hasPermission("ne.admin")) {
+            if (!player.hasPermission("ne.economy") && !player.hasPermission("ne.admin")) {
                 return completions;
             }
 
             switch (args.length) {
                 case 1:
-                    StringUtil.copyPartialMatches(args[0], getCategoryRegistry().getCategoriess().keySet(), completions);
+                    List<String> arggs = Lists.newArrayList("set", "add", "remove");
+                    StringUtil.copyPartialMatches(args[0], arggs, completions);
+                    Collections.sort(completions);
+                    return completions;
+                case 2:
+                    arggs = Lists.newArrayList();
+                    for (Player players : Bukkit.getOnlinePlayers()) {
+                        arggs.add(players.getName());
+                    }
+                    StringUtil.copyPartialMatches(args[0], arggs, completions);
                     Collections.sort(completions);
                     return completions;
                 default:

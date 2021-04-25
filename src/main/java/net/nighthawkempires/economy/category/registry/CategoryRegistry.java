@@ -53,6 +53,10 @@ public interface CategoryRegistry extends Registry<CategoryModel> {
     @Deprecated
     Map<String, CategoryModel> getRegisteredData();
 
+    default Map<String, CategoryModel> getCategoriess() {
+        return loadAllFromDb();
+    }
+
     default boolean categoryExists(String name) {
         return fromKey(name).isPresent();
     }
