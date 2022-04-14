@@ -95,13 +95,30 @@ public class BalanceTopCommand implements CommandExecutor {
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
 
             StringBuilder spacer = new StringBuilder();
-            int spaces = 25 - offlinePlayer.getName().length();
-            for (int j = 0; j < spaces; j++)
-                spacer.append(" ");
+            String name = "";
+            if (offlinePlayer.getName() != null) {
+                name = offlinePlayer.getName();
+
+                int spaces = 25 - offlinePlayer.getName().length();
+                for (int j = 0; j < spaces; j++)
+                    spacer.append(" ");
+
+            } else if (offlinePlayer.getName() == null) {
+                if (user.getUserName() == null || user.getUserName().equals("null") || user.getUserName().length() == 0) {
+                    name = user.getKey();
+                } else {
+                    name = user.getUserName();
+
+                    int spaces = 25 - user.getUserName().length();
+                    for (int j = 0; j < spaces; j++)
+                        spacer.append(" ");
+
+                }
+            }
 
             int pos = i + 1;
-            sender.sendMessage(GOLD + "" + pos + DARK_GRAY + ". " + GREEN + offlinePlayer.getName()
-                    + spacer.toString() + DARK_GRAY + " - Balance" + GRAY + ": " + GOLD + StringUtil.formatBalance(user.getCurrentServerBalance()));
+            sender.sendMessage(GOLD + "" + pos + DARK_GRAY + ". " + GREEN + name
+                    + spacer + DARK_GRAY + " - Balance" + GRAY + ": " + GOLD + StringUtil.formatBalance(user.getCurrentServerBalance()));
         }
 
         sender.sendMessage(getMessages().getMessage(CHAT_FOOTER));
